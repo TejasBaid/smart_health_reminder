@@ -53,13 +53,6 @@ flutter pub get
 flutter run
 ```
 
----
-
-## **🎨 Design & Animations**
-This app features **modern typography**, **smooth animations**, and a **minimalist UI**. The animated **emoji blob** provides **real-time feedback** based on emotions using **Rive**.
-
----
-
 ## **🤝 Contributing**
 Want to improve this project? Follow these steps:
 1. **Fork** the repository.
