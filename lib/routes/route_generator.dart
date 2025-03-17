@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:smart_health_reminder/modules/dashboard/views/dashboard_view.dart';
+import 'package:smart_health_reminder/modules/step_tracking/views/step_tracking_view.dart';
 import 'package:smart_health_reminder/routes/routes.dart';
 
 class RouteGenerator {
@@ -11,11 +12,15 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.dashboard:
         return MaterialPageRoute(
-          builder: (_) => const DashboardView(),
+          builder: (_) =>  DashboardView(),
+        );
+      case Routes.stepTracking:
+        return MaterialPageRoute(
+          builder: (_) =>  StepTrackingView(),
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => const DashboardView(),
+          builder: (_) =>  StepTrackingView(),
         );
     }
   }

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:smart_health_reminder/core/const_imports.dart';
 import 'package:smart_health_reminder/routes/route_generator.dart';
 import 'package:smart_health_reminder/routes/routes.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: Routes.dashboard,
+      initialRoute: Routes.stepTracking,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
