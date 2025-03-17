@@ -1,5 +1,5 @@
+import '../../routes/routes.dart';
 import '../const_imports.dart';
-
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -23,24 +23,35 @@ class CustomBottomNavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildNavBarItem(HugeIcons.strokeRoundedHome01, 0),
-          _buildNavBarItem(HugeIcons.strokeRoundedRunningShoes, 1),
-          _buildNavBarItem(HugeIcons.strokeRoundedWorkoutSquats, 2),
-          _buildNavBarItem(HugeIcons.strokeRoundedDroplet, 3),
+          _buildNavBarItem(HugeIcons.strokeRoundedHome01, 0, context),
+          _buildNavBarItem(HugeIcons.strokeRoundedRunningShoes, 1, context),
+          _buildNavBarItem(HugeIcons.strokeRoundedWorkoutSquats, 2, context),
+          _buildNavBarItem(HugeIcons.strokeRoundedDroplet, 3, context),
         ],
       ),
     );
   }
 
-  Widget _buildNavBarItem(IconData icon, int index) {
+  Widget _buildNavBarItem(IconData icon, int index, BuildContext context) {
     bool isSelected = currentIndex == index;
     return GestureDetector(
-      onTap: () => onTap(index),
+      onTap: () {
+        onTap(index);
+        if (index == 1) {
+          Navigator.pushNamed(context, Routes.stepTracking);
+        } else if (index == 2) {
+          Navigator.pushNamed(context, Routes.postureTracking);
+        }
+        // Uncomment and modify for additional navigation:
+        // else if (index == 3) {
+        //   Navigator.pushNamed(context, Routes.waterTracking);
+        // }
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xff7199AA) : Colors.transparent,
+          color: isSelected ? Color(0xff7199AA) : Color(0xffCADCE4),
           shape: BoxShape.circle,
         ),
         child: Icon(

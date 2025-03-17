@@ -1,25 +1,24 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import '../../../core/const_imports.dart';
+import '../../step_tracking/widgets/ripple_background.dart';
 
-class StepTrackerCard extends StatelessWidget {
-  final int steps;
-  final int goalSteps;
-  final int xpGained;
+class PostureStatusCard extends StatelessWidget {
+  final bool isGoodPosture;
+  final double quality;
+  final int duration;
 
-  const StepTrackerCard({
+  const PostureStatusCard({
     Key? key,
-    required this.steps,
-    this.goalSteps = 10000,
-    this.xpGained = 20,
+    required this.isGoodPosture,
+    required this.quality,
+    required this.duration,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final double progressPercentage = (steps / goalSteps) * 100;
-    final double progressBarWidth = (steps / goalSteps).clamp(0.0, 1.0);
-
     return Container(
-      height: 190,
+      height: 160,
       decoration: BoxDecoration(
         color: ColorConsts.tealPopAccent,
         borderRadius: BorderRadius.circular(24),
@@ -33,10 +32,12 @@ class StepTrackerCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
+          // Static ripple background
           ClipRRect(
             borderRadius: BorderRadius.circular(24),
             child: const StaticRippleBackgroundCard(),
           ),
+
           // Main content
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -44,8 +45,10 @@ class StepTrackerCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Top row with status and icon
                 Row(
                   children: [
+                    // Status text
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -53,7 +56,7 @@ class StepTrackerCard extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: steps.toString(),
+                                text: quality.toInt().toString(),
                                 style: const TextStyle(
                                   color: ColorConsts.whiteCl,
                                   fontSize: 26,
@@ -61,10 +64,10 @@ class StepTrackerCard extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: '/${goalSteps}',
+                                text: '/100',
                                 style: TextStyle(
                                   color: ColorConsts.whiteCl.withOpacity(0.7),
-                                  fontSize: 24,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                   fontFeatures: [const FontFeature.subscripts()],
                                 ),
@@ -73,7 +76,7 @@ class StepTrackerCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Steps',
+                          'Posture Quality',
                           style: TextStyle(
                             color: ColorConsts.whiteCl.withOpacity(0.9),
                             fontSize: 16,
@@ -88,11 +91,15 @@ class StepTrackerCard extends StatelessWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: ColorConsts.greenAccent,
+                        color: isGoodPosture
+                            ? ColorConsts.greenAccent
+                            : Colors.orange,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
-                        Icons.directions_walk,
+                      child: Icon(
+                        isGoodPosture
+                            ? Icons.sentiment_satisfied_alt
+                            : Icons.sentiment_dissatisfied,
                         color: ColorConsts.tealPopAccent,
                         size: 28,
                       ),
@@ -100,6 +107,7 @@ class StepTrackerCard extends StatelessWidget {
                   ],
                 ),
 
+                // XP gained info
                 Row(
                   children: [
                     Icon(
@@ -109,7 +117,7 @@ class StepTrackerCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '+${xpGained} XP gained from walking',
+                      '+${(quality / 2).toInt()} XP gained from good posture',
                       style: TextStyle(
                         color: ColorConsts.whiteCl.withOpacity(0.9),
                         fontSize: 14,
@@ -120,11 +128,14 @@ class StepTrackerCard extends StatelessWidget {
 
                 const SizedBox(height: 8),
 
+                // Progress row
                 Row(
                   children: [
+                    // Progress bar
                     Expanded(
                       child: Stack(
                         children: [
+                          // Background track
                           Container(
                             height: 8,
                             decoration: BoxDecoration(
@@ -133,8 +144,9 @@ class StepTrackerCard extends StatelessWidget {
                             ),
                           ),
 
+                          // Progress fill
                           FractionallySizedBox(
-                            widthFactor: progressBarWidth,
+                            widthFactor: quality / 100,
                             child: Container(
                               height: 8,
                               decoration: BoxDecoration(
@@ -154,8 +166,9 @@ class StepTrackerCard extends StatelessWidget {
 
                     const SizedBox(width: 12),
 
+                    // Percentage text
                     Text(
-                      '${progressPercentage.toInt()}%',
+                      '${quality.toInt()}%',
                       style: const TextStyle(
                         color: ColorConsts.whiteCl,
                         fontSize: 16,
@@ -166,7 +179,7 @@ class StepTrackerCard extends StatelessWidget {
                 ),
 
                 Text(
-                  'Complete your goal to earn more rewards!',
+                  'Duration: $duration minutes of good posture',
                   style: TextStyle(
                     color: ColorConsts.whiteCl.withOpacity(0.8),
                     fontSize: 12,
@@ -181,20 +194,20 @@ class StepTrackerCard extends StatelessWidget {
   }
 }
 
-// Static ripple effect - keep this unchanged
+// Static ripple effect for card
 class StaticRippleBackgroundCard extends StatelessWidget {
   const StaticRippleBackgroundCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: StaticRipplePainter(),
+      painter: StaticRipplePainterCard(),
       size: Size.infinite,
     );
   }
 }
 
-class StaticRipplePainter extends CustomPainter {
+class StaticRipplePainterCard extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     // Origin point in the top left area
@@ -214,5 +227,5 @@ class StaticRipplePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(StaticRipplePainter oldDelegate) => false;
+  bool shouldRepaint(StaticRipplePainterCard oldDelegate) => false;
 }

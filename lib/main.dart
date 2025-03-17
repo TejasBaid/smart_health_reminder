@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Routing Example',
+      title: 'Habit app',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
