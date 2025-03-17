@@ -1,11 +1,23 @@
-import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:smart_health_reminder/modules/step_tracking/widgets/metrics_row.dart';
 
-import 'package:hugeicons/hugeicons.dart';
+import '../../../core/const_imports.dart';
+import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../core/widgets/custom_navbar.dart';
+import '../widgets/ripple_background.dart';
+import '../widgets/step_counter_card.dart';
 
 
-class StepTrackingView extends StatelessWidget {
+class StepTrackingView extends StatefulWidget {
   const StepTrackingView({Key? key}) : super(key: key);
+
+  @override
+  State<StepTrackingView> createState() => _StepTrackingViewState();
+}
+
+class _StepTrackingViewState extends State<StepTrackingView> {
+  int _currentIndex = 1;  // Track the current tab index
+  final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +28,10 @@ class StepTrackingView extends StatelessWidget {
         children: [
           // Top blue section with ripple background
           Expanded(
-            flex: 5,
+            flex: 3,
             child: Stack(
               children: [
-                // Ripple background
                 const StaticRippleBackground(),
-
-                // Content
                 SafeArea(
                   child: Column(
                     children: [
@@ -31,12 +40,11 @@ class StepTrackingView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Row(
                           children: [
-
                             const SizedBox(width: 16),
                             const Text(
-                              'Water Intake',
+                              'Step Tracking',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: ColorConsts.whiteCl,
                                 fontSize: 22,
                                 fontWeight: FontWeight.w800,
                               ),
@@ -44,39 +52,50 @@ class StepTrackingView extends StatelessWidget {
                           ],
                         ),
                       ),
-
+                      const SizedBox(height: 10),
                       Expanded(
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               // Goal value
-                              const Text(
-                                '200',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 72,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    HugeIcons.strokeRoundedRunningShoes,
+                                    color: ColorConsts.whiteCl,
+                                    size: 40,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const Text(
+                                    '2041',
+                                    style: TextStyle(
+                                      color: ColorConsts.whiteCl,
+                                      fontSize: 52,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(height: 8),
-
+                              const SizedBox(height: 3),
                               // Unit selector
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 6),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: const [
                                     Text(
-                                      'Unit: ml',
+                                      'Unit: Steps',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: ColorConsts.whiteCl,
                                         fontSize: 16,
                                       ),
                                     ),
                                     Icon(
                                       Icons.arrow_drop_down,
-                                      color: Colors.white,
+                                      color: ColorConsts.whiteCl,
                                     ),
                                   ],
                                 ),
@@ -91,248 +110,91 @@ class StepTrackingView extends StatelessWidget {
               ],
             ),
           ),
-
-          // Bottom white section with templates
+          // Bottom section with progress details
           Expanded(
-            flex: 6,
+            flex: 7,
             child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
+              color: ColorConsts.bluePrimary,
+              child: Material(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30),
                   topRight: Radius.circular(30),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Template goal header
-                    const Text(
-                      'Template Goal',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-
-                    // Subtitle
-                    const Text(
-                      'We prepared a lot of goals for you!',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Search field
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.search,
-                            color: Colors.blue,
-                            size: 20,
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            'Search Template',
+                color: ColorConsts.whiteCl,
+                clipBehavior: Clip.antiAlias,
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Header with title and navigation to see all details
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            "Today's Progress",
                             style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: ColorConsts.blackText,
                             ),
                           ),
+                          Row(
+                            children: const [
+                              Text(
+                                "See all",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  color: ColorConsts.bluePrimary,
+                                ),
+                              ),
+                              Icon(
+                                Icons.keyboard_arrow_right,
+                                color: ColorConsts.bluePrimary,
+                              ),
+                            ],
+                          )
                         ],
                       ),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Template grid
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.4,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                        physics: const NeverScrollableScrollPhysics(),
-                        children: const [
-                          TemplateCard(
-                            title: 'Summer time',
-                            amount: '2000ml',
-                            icon: '🌴',
-                          ),
-                          TemplateCard(
-                            title: 'Sporty',
-                            amount: '2500ml',
-                            icon: '🏀',
-                          ),
-                          TemplateCard(
-                            title: 'Snow day',
-                            amount: '2200ml',
-                            icon: '❄️',
-                          ),
-                          TemplateCard(
-                            title: 'Child',
-                            amount: '1500ml',
-                            icon: '🌈',
-                          ),
-                        ],
+                      const SizedBox(height: 4),
+                      // Subtitle
+                      const Text(
+                        'You are more active than usual today',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: ColorConsts.greySubtitle,
+                        ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 30),
+                            MetricsRow(valueNotifier: _valueNotifier),
+                            const SizedBox(height: 10),
+                            // Step counter card
+                            const StepTrackerCard(
+                              steps: 9041,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
-      floatingActionButton:Container(
-        // Adjust width or margin to your liking
-        margin: const EdgeInsets.symmetric(horizontal:60),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 1),
-        decoration: BoxDecoration(
-          // Semi-transparent background
-          color: Color(0xffEEF2F3),
-          borderRadius: BorderRadius.circular(50),
-
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _buildNavBarItem(HugeIcons.strokeRoundedHome01, 0),
-            _buildNavBarItem(HugeIcons.strokeRoundedMedicine02, 1),
-            _buildNavBarItem(HugeIcons.strokeRoundedChartBarLine, 2),
-            _buildNavBarItem(HugeIcons.strokeRoundedUser, 3),
-          ],
-        ),
+      floatingActionButton: CustomBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
-  Widget _buildNavBarItem(IconData icon, int index) {
-    // bool isSelected = _currentIndex == index;
-    return GestureDetector(
-      onTap: () {
-        // setState(() {
-        //   _currentIndex = index;
-        // });
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Color(0xff7199AA),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          icon,
-          color: Colors.white,
-          size: 25,
-        ),
-      ),
-    );
-  }
-}
-
-class TemplateCard extends StatelessWidget {
-  final String title;
-  final String amount;
-  final String icon;
-
-  const TemplateCard({
-    Key? key,
-    required this.title,
-    required this.amount,
-    required this.icon,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.withOpacity(0.2)),
-      ),
-      padding: const EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 14,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                amount,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                icon,
-                style: const TextStyle(
-                  fontSize: 24,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-
-  }
-}
-
-class StaticRippleBackground extends StatelessWidget {
-  const StaticRippleBackground({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xFF30BFC7), // Teal color matching your image
-      child: CustomPaint(
-        painter: StaticRipplePainter(),
-        size: Size.infinite,
-      ),
-    );
-  }
-}
-
-class StaticRipplePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Origin point in the top left area (slightly off-screen)
-    final origin = Offset(size.width * 0.2, size.height * 0.2);
-
-    // Create multiple static ripple circles
-    for (int i = 0; i < 8; i++) {
-      final radius = size.width * (0.001 + i * 0.14);
-
-      final paint = Paint()
-        ..color = Colors.white.withOpacity(0.2)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.0;
-
-      canvas.drawCircle(origin, radius, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(StaticRipplePainter oldDelegate) => false; // Static, no need to repaint
 }
