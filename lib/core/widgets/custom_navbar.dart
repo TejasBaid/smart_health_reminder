@@ -14,8 +14,8 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 60),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 1),
+      margin: const EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 5),
       decoration: BoxDecoration(
         color: const Color(0xffEEF2F3),
         borderRadius: BorderRadius.circular(50),
@@ -27,6 +27,7 @@ class CustomBottomNavBar extends StatelessWidget {
           _buildNavBarItem(HugeIcons.strokeRoundedRunningShoes, 1, context),
           _buildNavBarItem(HugeIcons.strokeRoundedWorkoutSquats, 2, context),
           _buildNavBarItem(HugeIcons.strokeRoundedDroplet, 3, context),
+          _buildNavBarItem(HugeIcons.strokeRoundedChampion, 4, context),
         ],
       ),
     );

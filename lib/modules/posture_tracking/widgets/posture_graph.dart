@@ -24,7 +24,6 @@ class PostureBarGraph extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header row with title and period selector
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -65,7 +64,6 @@ class PostureBarGraph extends StatelessWidget {
 
           const SizedBox(height: 10),
 
-          // Weekly average stats
           Row(
             children: [
               Text(
@@ -76,24 +74,7 @@ class PostureBarGraph extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(width: 8),
-              Row(
-                children: [
-                  Icon(
-                    Icons.arrow_upward,
-                    color: ColorConsts.greenAccent,
-                    size: 16,
-                  ),
-                  Text(
-                    '8.2%',
-                    style: TextStyle(
-                      color: ColorConsts.greenAccent,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+
             ],
           ),
 
@@ -117,9 +98,9 @@ class PostureBarGraph extends StatelessWidget {
                   touchTooltipData: BarTouchTooltipData(
 
                     getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                      String weekDay = _getWeekdayName(group.x as double);
+                      String weekDay = _getWeekdayName(group.x.toDouble());
                       return BarTooltipItem(
-                        '$weekDay\n${rod.toY.round()}%',
+                        '$weekDay\n${rod.toY.round().toDouble()}%',
                         const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -135,7 +116,6 @@ class PostureBarGraph extends StatelessWidget {
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
                         return SideTitleWidget(
-
                           meta:meta,
                           child: Text(
                             _getWeekdayShort(value),
@@ -150,7 +130,9 @@ class PostureBarGraph extends StatelessWidget {
                       reservedSize: 30,
                     ),
                   ),
-
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
                   topTitles: AxisTitles(
                     sideTitles: SideTitles(showTitles: false),
                   ),

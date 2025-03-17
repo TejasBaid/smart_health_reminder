@@ -18,7 +18,7 @@ class PostureStatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 160,
+      height: 190,
       decoration: BoxDecoration(
         color: ColorConsts.tealPopAccent,
         borderRadius: BorderRadius.circular(24),

@@ -33,26 +33,50 @@ class _StepTrackingViewState extends State<StepTrackingView> {
               children: [
                 const StaticRippleBackground(),
                 SafeArea(
+                  child: Padding(padding: EdgeInsets.symmetric(horizontal:20),
                   child: Column(
                     children: [
                       // Back button and title
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 16),
-                            const Text(
-                              'Step Tracking',
-                              style: TextStyle(
-                                color: ColorConsts.whiteCl,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w800,
+                      const SizedBox(height: 16),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Steps Tracker',
+                                style: TextStyle(
+                                  color: ColorConsts.whiteCl,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: ColorConsts.greenAccent,
+                                    size: 16,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    '+125 XP today',
+                                    style: TextStyle(
+                                      color: ColorConsts.whiteCl.withOpacity(0.9),
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+                          // Notification icon
+                        ],
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 5),
                       Expanded(
                         child: Center(
                           child: Column(
@@ -65,14 +89,14 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                                   Icon(
                                     HugeIcons.strokeRoundedRunningShoes,
                                     color: ColorConsts.whiteCl,
-                                    size: 40,
+                                    size: 30,
                                   ),
                                   const SizedBox(width: 10),
                                   const Text(
                                     '2041',
                                     style: TextStyle(
                                       color: ColorConsts.whiteCl,
-                                      fontSize: 52,
+                                      fontSize: 38,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -82,7 +106,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                               // Unit selector
                               Container(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 6),
+                                    horizontal: 12, vertical: 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: const [
@@ -105,7 +129,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                         ),
                       ),
                     ],
-                  ),
+                  ),)
                 ),
               ],
             ),
