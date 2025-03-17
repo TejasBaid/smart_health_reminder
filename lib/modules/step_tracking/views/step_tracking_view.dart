@@ -4,6 +4,7 @@ import '../../../core/const_imports.dart';
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/widgets/custom_navbar.dart';
+import '../../../routes/routes.dart';
 import '../widgets/ripple_background.dart';
 import '../widgets/step_counter_card.dart';
 
@@ -164,13 +165,20 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                             ),
                           ),
                           Row(
-                            children: const [
-                              Text(
-                                "See all",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                  color: ColorConsts.bluePrimary,
+                            children:  [
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.pushNamed(context, Routes.stepHistoryList);
+                                },
+                                child:Text(
+
+                                  "See all",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                    color: ColorConsts.bluePrimary,
+                                  ),
+
                                 ),
                               ),
                               Icon(

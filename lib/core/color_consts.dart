@@ -6,7 +6,9 @@ class ColorConsts {
   static const bluePrimary = Color(0xFF438AAC);
   static const lightGrey = Color(0xffeeeeee);
   static const greenAccent = Color(0xffC3DF17);
-  static const orangeAccent = Color(0xffdf8817);
+  static const yellowAccent = Color(0xffEFC800);
+  static const orangeAccent = Color(0xffEFC800);
+  static const orangeCl = Color(0xffFF964F);
   static const redAccent = Color(0xffFF6961);
   static const tealPopAccent = Color(0xFF30C3D5);
   static const blackText = Colors.black87;
