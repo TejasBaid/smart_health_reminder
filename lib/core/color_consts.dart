@@ -13,7 +13,11 @@ class ColorConsts {
   static const tealPopAccent = Color(0xFF30C3D5);
   static const blackText = Colors.black87;
   static const greySubtitle = Colors.grey;
-  static Color whiteOpacity15 = Colors.white.withOpacity(0.15);
+  static Color whiteOpacity15 = ColorConsts.whiteCl.withOpacity(0.15);
   static Color greyOpacity02 = Colors.grey.withOpacity(0.2);
   static const transparent = Colors.transparent;
+  static const Color greyLight = Color(0xFFE0E0E0);
+  static const Color grey600 = Color(0xFF757575);
+  static const Color black87 = Color(0xDD000000);
 }
+

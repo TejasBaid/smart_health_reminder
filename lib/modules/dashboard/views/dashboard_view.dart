@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:smart_health_reminder/core/color_consts.dart';
 import 'package:smart_health_reminder/modules/dashboard/widgets/water_tracker_card.dart';
 
 class DashboardView extends StatefulWidget {
@@ -86,7 +87,7 @@ class _DashboardViewState extends State<DashboardView> {
     return Scaffold(
       extendBody: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      backgroundColor: Colors.white,
+      backgroundColor: ColorConsts.whiteCl,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -103,7 +104,7 @@ class _DashboardViewState extends State<DashboardView> {
                       Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: ColorConsts.whiteCl,
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: Colors.black.withValues(alpha: 0.1)
@@ -122,7 +123,7 @@ class _DashboardViewState extends State<DashboardView> {
                       Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: ColorConsts.whiteCl,
                             shape: BoxShape.circle,
                             border: Border.all(
                                 color: Colors.black.withValues(alpha: 0.1)
@@ -205,7 +206,7 @@ class _DashboardViewState extends State<DashboardView> {
         ),
         child: Icon(
           icon,
-          color: isSelected ? Colors.white : Colors.black.withValues(alpha: 0.7),
+          color: isSelected ? ColorConsts.whiteCl : Colors.black.withValues(alpha: 0.7),
           size: 25,
         ),
       ),

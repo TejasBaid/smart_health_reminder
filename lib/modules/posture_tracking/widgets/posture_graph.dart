@@ -10,7 +10,7 @@ class PostureBarGraph extends StatelessWidget {
     return Container(
       height: 260,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorConsts.whiteCl,
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
           BoxShadow(
@@ -102,7 +102,7 @@ class PostureBarGraph extends StatelessWidget {
                       return BarTooltipItem(
                         '$weekDay\n${rod.toY.round().toDouble()}%',
                         const TextStyle(
-                          color: Colors.white,
+                          color: ColorConsts.whiteCl,
                           fontWeight: FontWeight.bold,
                         ),
                       );

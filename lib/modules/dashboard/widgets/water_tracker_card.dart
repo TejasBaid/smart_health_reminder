@@ -3,6 +3,8 @@ import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+import '../../../core/color_consts.dart';
+
 class WaterTrackerCard extends StatelessWidget {
   final int waterIntake;
   final Function()? onAddGoal;
@@ -66,7 +68,7 @@ class WaterTrackerCard extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: ColorConsts.whiteCl,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
@@ -95,7 +97,7 @@ class WaterTrackerCard extends StatelessWidget {
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(vertical: 12),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: ColorConsts.whiteCl,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(

@@ -22,32 +22,26 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
   int _goodPostureMinutes = 342;
   int _badPostureMinutes = 78;
 
-  // Background color for animation
   Color _backgroundColor = const Color(0xFF30BFC7);
 
-  // Posture detection service
   late PostureDetectionService _postureService;
 
   @override
   void initState() {
     super.initState();
 
-    // Initialize and start the posture detection service
     _postureService = PostureDetectionService();
     _postureService.startDetection();
 
-    // Listen for posture status changes
     _postureService.postureStatus.listen((isGood) {
       setState(() {
         _isGoodPosture = isGood;
       });
     });
 
-    // Listen for posture quality updates
     _postureService.postureQuality.listen((quality) {
       _postureQualityNotifier.value = quality;
 
-      // Update metrics
       final metrics = _postureService.getPostureMetrics();
       setState(() {
         _goodPostureMinutes = metrics['goodPostureMinutes'];
@@ -55,7 +49,6 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
       });
     });
 
-    // Listen for background color changes
     _postureService.backgroundColor.listen((color) {
       setState(() {
         _backgroundColor = color;
@@ -129,22 +122,18 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
                               ],
                             ),
 
-                            // Notification icon
                           ],
                         ),
 
                         const SizedBox(height: 12),
 
-                        // Current posture status
                         Center(
                           child: Column(
                             children: [
-                              // Posture status icon
 
 
                               const SizedBox(height: 10),
 
-                              // Status text
                               Text(
                                 _isGoodPosture ? 'Great Posture!' : 'Fix Your Posture',
                                 style: const TextStyle(
@@ -156,7 +145,6 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
 
                               const SizedBox(height: 2),
 
-                              // Status description
                               Text(
                                 _isGoodPosture
                                     ? 'You\'re maintaining excellent form'
@@ -178,7 +166,6 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
             ),
           ),
 
-          // Bottom white section
           Expanded(
             flex: 7,
             child: Container(
@@ -197,7 +184,6 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Today's Progress header
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -231,7 +217,6 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
 
                         const SizedBox(height: 6),
 
-                        // Status description
                         Text(
                           _isGoodPosture
                               ? 'Your posture is improving! Keep it up.'
@@ -258,12 +243,10 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
 
                         const SizedBox(height: 20),
 
-                        // Posture time statistics
                         PostureBarGraph(),
 
                         const SizedBox(height: 20),
 
-                        // Posture tips card
                         Container(
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(

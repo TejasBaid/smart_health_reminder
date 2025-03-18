@@ -59,7 +59,7 @@ class StepHistoryListItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorConsts.whiteCl,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(

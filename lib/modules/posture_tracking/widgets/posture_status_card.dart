@@ -218,7 +218,7 @@ class StaticRipplePainterCard extends CustomPainter {
       final radius = size.width * (0.2 + i * 0.18);
 
       final paint = Paint()
-        ..color = Colors.white.withOpacity(0.08)
+        ..color = ColorConsts.whiteCl.withOpacity(0.08)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.5;
 

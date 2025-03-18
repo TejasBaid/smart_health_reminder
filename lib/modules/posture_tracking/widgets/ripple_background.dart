@@ -26,7 +26,7 @@ class StaticRipplePainter extends CustomPainter {
       final radius = size.width * (0.001 + i * 0.14);
 
       final paint = Paint()
-        ..color = Colors.white.withOpacity(0.2)
+        ..color = ColorConsts.whiteCl.withOpacity(0.2)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.0;
 

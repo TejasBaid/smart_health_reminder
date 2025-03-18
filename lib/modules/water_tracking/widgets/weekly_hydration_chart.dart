@@ -10,7 +10,7 @@ class WeeklyHydrationChart extends StatelessWidget {
       height: 200,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorConsts.whiteCl,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
