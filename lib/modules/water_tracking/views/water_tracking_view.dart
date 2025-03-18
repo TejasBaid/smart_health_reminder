@@ -20,10 +20,9 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
   final double _dailyGoal = 2000; // Default goal in ml
   final List<DateTime> _intakeTimes = [];
 
-  // Selected amount for addition
   String _selectedAmount = '100 ml';
 
-  // Water amount options with icons
+
   final List<WaterOption> _waterOptions = [
     WaterOption(amount: 100, label: '100 ml', icon: HugeIcons.strokeRoundedDroplet, color: ColorConsts.bluePrimary),
     WaterOption(amount: 250, label: '1 Glass', icon: FontAwesomeIcons.wineGlass, color: ColorConsts.bluePrimary),
@@ -98,12 +97,10 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
                           ],
                         ),
                         const Spacer(),
-                        // Enhanced water amount display with dynamic value
                         Center(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              // Water amount with plus/minus buttons
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -117,7 +114,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
                                     },
                                   ),
                                   const SizedBox(width: 16),
-                                  // Dynamic display of current value
                                   ValueListenableBuilder<double>(
                                     valueListenable: _waterIntakeNotifier,
                                     builder: (context, value, _) => Text(
@@ -140,7 +136,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
                                 ],
                               ),
                               const SizedBox(height: 16),
-                              // Beautiful dropdown with ripple effect
                               GestureDetector(
                                 onTap: () => _showWaterOptionsModal(context),
                                 child: Container(
@@ -188,7 +183,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
               ],
             ),
           ),
-          // Keep the rest of your UI as is
           Expanded(
             flex: 7,
             child: Container(
@@ -224,7 +218,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
     );
   }
 
-  // Beautiful control button with ripple effect
   Widget _buildWaterControlButton({required IconData icon, required VoidCallback onTap}) {
     return InkWell(
       onTap: onTap,
@@ -245,7 +238,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
     );
   }
 
-  // Get the currently selected option
   WaterOption _getSelectedOption() {
     return _waterOptions.firstWhere(
           (option) => option.label == _selectedAmount,
@@ -419,7 +411,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
                   ),
                 ),
 
-                // Done button with full width
                 Padding(
                   padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
                   child: SizedBox(
@@ -463,7 +454,6 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
   }
 }
 
-// Model class for water options
 class WaterOption {
   final int amount;
   final String label;
