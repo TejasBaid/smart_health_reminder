@@ -43,6 +43,9 @@ class CustomBottomNavBar extends StatelessWidget {
         } else if (index == 2) {
           Navigator.pushNamed(context, Routes.postureTracking);
         }
+        else if (index == 3) {
+          Navigator.pushNamed(context, Routes.waterTracking);
+        }
         // Uncomment and modify for additional navigation:
         // else if (index == 3) {
         //   Navigator.pushNamed(context, Routes.waterTracking);

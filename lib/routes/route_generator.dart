@@ -6,6 +6,7 @@ import 'package:smart_health_reminder/modules/dashboard/views/dashboard_view.dar
 import 'package:smart_health_reminder/modules/posture_tracking/views/posture_tracking_view.dart';
 import 'package:smart_health_reminder/modules/step_tracking/views/step_tracking_history.dart';
 import 'package:smart_health_reminder/modules/step_tracking/views/step_tracking_view.dart';
+import 'package:smart_health_reminder/modules/water_tracking/views/water_tracking_view.dart';
 import 'package:smart_health_reminder/routes/routes.dart';
 
 class RouteGenerator {
@@ -27,6 +28,10 @@ class RouteGenerator {
       case Routes.stepHistoryList:
         return MaterialPageRoute(
           builder: (_) =>  StepsHistoryView(),
+        );
+      case Routes.waterTracking:
+        return MaterialPageRoute(
+          builder: (_) =>  WaterTrackingView(),
         );
       default:
         return MaterialPageRoute(

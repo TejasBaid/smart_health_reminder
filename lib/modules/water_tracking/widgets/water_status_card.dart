@@ -1,23 +1,20 @@
-import 'dart:ui';
 import '../../../core/const_imports.dart';
 
-class StepTrackerCard extends StatelessWidget {
-  final int steps;
-  final int goalSteps;
+class WaterStatusCard extends StatelessWidget {
+  final double currentIntake;
+  final double dailyGoal;
   final int xpGained;
 
-  const StepTrackerCard({
-    Key? key,
-    required this.steps,
-    this.goalSteps = 10000,
+  const WaterStatusCard({
+    required this.currentIntake,
+    required this.dailyGoal,
     this.xpGained = 20,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final double progressPercentage = (steps / goalSteps) * 100;
-    final double progressBarWidth = (steps / goalSteps).clamp(0.0, 1.0);
-
+    final double progressPercentage = (currentIntake / dailyGoal) * 100;
+    final double progressBarWidth = (currentIntake / dailyGoal).clamp(0.0, 1.0);
     return Container(
       height: 190,
       decoration: BoxDecoration(
@@ -53,7 +50,7 @@ class StepTrackerCard extends StatelessWidget {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: steps.toString(),
+                                text: currentIntake.toString(),
                                 style: const TextStyle(
                                   color: ColorConsts.whiteCl,
                                   fontSize: 26,
@@ -61,7 +58,7 @@ class StepTrackerCard extends StatelessWidget {
                                 ),
                               ),
                               TextSpan(
-                                text: '/${goalSteps}',
+                                text: '/${dailyGoal}',
                                 style: TextStyle(
                                   color: ColorConsts.whiteCl.withOpacity(0.7),
                                   fontSize: 24,
@@ -73,7 +70,7 @@ class StepTrackerCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Steps',
+                          'ml water',
                           style: TextStyle(
                             color: ColorConsts.whiteCl.withOpacity(0.9),
                             fontSize: 16,
@@ -92,7 +89,7 @@ class StepTrackerCard extends StatelessWidget {
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
-                        Icons.directions_walk,
+                        Icons.water_drop_outlined,
                         color: ColorConsts.tealPopAccent,
                         size: 28,
                       ),
@@ -109,7 +106,7 @@ class StepTrackerCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '+${xpGained} XP gained from walking',
+                      '+${xpGained} XP gained from drinking water',
                       style: TextStyle(
                         color: ColorConsts.whiteCl.withOpacity(0.9),
                         fontSize: 14,
@@ -180,6 +177,7 @@ class StepTrackerCard extends StatelessWidget {
     );
   }
 }
+
 
 class StaticRippleBackgroundCard extends StatelessWidget {
   const StaticRippleBackgroundCard({Key? key}) : super(key: key);
