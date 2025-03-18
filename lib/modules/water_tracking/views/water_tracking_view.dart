@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_health_reminder/core/const_imports.dart';
+import 'package:smart_health_reminder/modules/step_tracking/widgets/metrics_row.dart';
+import 'package:smart_health_reminder/modules/water_tracking/widgets/weather_card.dart';
 import '../../../core/widgets/custom_navbar.dart';
 import '../../../core/widgets/hydration_header.dart';
 import '../../../core/widgets/water_intake_controls.dart';
@@ -19,6 +21,8 @@ class WaterTrackingView extends StatefulWidget {
 
 class _WaterTrackingViewState extends State<WaterTrackingView> {
   final ValueNotifier<double> _waterIntakeNotifier = ValueNotifier(1200);
+  final ValueNotifier<double> _dailyGoalNotifier = ValueNotifier(2000);
+  final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
   final double _dailyGoal = 2000;
   final List<WaterOption> _waterOptions = [
     WaterOption(amount: 100, label: '100 ml', icon: HugeIcons.strokeRoundedDroplet, color: ColorConsts.bluePrimary),
@@ -104,7 +108,7 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
                                       '${value.toInt()} ml',
                                       style: const TextStyle(
                                         color: ColorConsts.whiteCl,
-                                        fontSize: 32,
+                                        fontSize: 28,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -140,43 +144,51 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
               child: Material(
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
                 clipBehavior: Clip.antiAlias,
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: ValueListenableBuilder<double>(
-                    valueListenable: _waterIntakeNotifier,
-                    builder: (context, value, _) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Today's Hydration",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: ColorConsts.blackText,
+                color: ColorConsts.whiteCl,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: ValueListenableBuilder<double>(
+                      valueListenable: _waterIntakeNotifier,
+                      builder: (context, value, _) => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Today's Hydration",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: ColorConsts.blackText,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 6),
+                          const SizedBox(height: 6),
 
-                        // Status description
-                        Text(
+                          // Status description
+                          Text(
 
-                              'You are well hydrated! Keep it Up!',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: ColorConsts.greySubtitle,
+                            'You are well hydrated! Keep it Up!',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: ColorConsts.greySubtitle,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        WaterStatusCard(
-                          currentIntake: value,
-                          dailyGoal: _dailyGoal,
-                        ),
-                      ],
+                          const SizedBox(height: 16),
+                          MetricsRow(valueNotifier: _valueNotifier),
+                          SizedBox(height: 20,),
+                          WaterStatusCard(
+                            currentIntake: value,
+                            dailyGoal: _dailyGoal,
+                          ),
+                          const SizedBox(height: 16),
+                          WeatherCard(dailyGoalNotifier: _dailyGoalNotifier),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                )
               ),
-            ),
+            )
           ),
         ],
       ),
