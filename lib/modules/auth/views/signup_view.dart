@@ -53,7 +53,7 @@ class _SignUpViewState extends State<SignUpView> {
                           style: TextStyle(
                             color: ColorConsts.whiteCl,
                             fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
                         const SizedBox(height: 8),

@@ -151,7 +151,7 @@ class _SignInViewState extends State<SignInView> {
                           ),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
 
                         AuthButton(
                           text: 'Login',
@@ -162,7 +162,7 @@ class _SignInViewState extends State<SignInView> {
                           },
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
 
                         Row(
                           children: [
@@ -186,7 +186,7 @@ class _SignInViewState extends State<SignInView> {
                           ],
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
 
                         Row(
                           children: [
@@ -209,7 +209,7 @@ class _SignInViewState extends State<SignInView> {
                           ],
                         ),
 
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 62),
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
