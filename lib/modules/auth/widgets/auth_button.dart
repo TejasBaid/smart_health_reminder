@@ -5,14 +5,12 @@ import 'ripple_background.dart';
 class AuthButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-  final Color backgroundColor;
   final Color textColor;
 
   const AuthButton({
     Key? key,
     required this.text,
     required this.onPressed,
-    this.backgroundColor = const Color(0xFFB7DB6B), // Lime green from image
     this.textColor = Colors.white,
   }) : super(key: key);
 
@@ -23,14 +21,14 @@ class AuthButton extends StatelessWidget {
       child: Container(
         height: 50,
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: ColorConsts.bluePrimary,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Stack(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: const StaticRippleBackground(btnCol: ColorConsts.tealPopAccent,),
+              child: const StaticRippleBackground(btnCol: ColorConsts.bluePrimary,),
             ),
             Center(
               child: Text(

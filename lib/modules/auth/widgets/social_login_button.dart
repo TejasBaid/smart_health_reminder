@@ -34,6 +34,7 @@ class SocialLoginButton extends StatelessWidget {
                 const FaIcon(
                 FontAwesomeIcons.google,
                 size: 16,
+                  color: Colors.red,
               )
               else
                 const FaIcon(

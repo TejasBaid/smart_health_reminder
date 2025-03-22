@@ -36,7 +36,6 @@ class _SignUpViewState extends State<SignUpView> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          // Header with ripple background
           Container(
             width: double.infinity,
             color: ColorConsts.bluePrimary,
@@ -73,7 +72,6 @@ class _SignUpViewState extends State<SignUpView> {
             ),
           ),
 
-          // Form content
           Expanded(
             child: Container(
               color: ColorConsts.bluePrimary,
@@ -91,7 +89,7 @@ class _SignUpViewState extends State<SignUpView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // Name input
+                        SizedBox(height: 20),
                         AuthInputField(
                           label: 'Full Name',
                           controller: _nameController,
@@ -105,7 +103,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 16),
 
-                        // Email input
                         AuthInputField(
                           label: 'Email',
                           controller: _emailController,
@@ -123,7 +120,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 16),
 
-                        // Password input
                         AuthInputField(
                           label: 'Password',
                           isPassword: _obscurePassword,
@@ -154,7 +150,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 16),
 
-                        // Confirm Password input
                         AuthInputField(
                           label: 'Confirm Password',
                           isPassword: _obscureConfirmPassword,
@@ -185,7 +180,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 24),
 
-                        // Register button
                         AuthButton(
                           text: 'Register',
                           onPressed: () {
@@ -197,7 +191,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 20),
 
-                        // Social login divider
                         Row(
                           children: [
                             const Expanded(
@@ -222,7 +215,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 20),
 
-                        // Social login buttons
                         Row(
                           children: [
                             Expanded(
@@ -247,7 +239,6 @@ class _SignUpViewState extends State<SignUpView> {
 
                         const SizedBox(height: 32),
 
-                        // Login link
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

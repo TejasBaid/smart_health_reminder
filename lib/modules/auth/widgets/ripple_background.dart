@@ -15,7 +15,7 @@ class StaticRippleBackground extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 100,
-      color: btnCol, // Teal color matching your image
+      color: btnCol,
       child: CustomPaint(
         painter: StaticRipplePainter(),
         size: Size.infinite,
@@ -27,10 +27,8 @@ class StaticRippleBackground extends StatelessWidget {
 class StaticRipplePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    // Origin point in the top left area (slightly off-screen)
     final origin = Offset(size.width * 0.2, size.height * 0.2);
 
-    // Create multiple static ripple circles
     for (int i = 0; i < 8; i++) {
       final radius = size.width * (0.001 + i * 0.14);
 
@@ -44,5 +42,5 @@ class StaticRipplePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(StaticRipplePainter oldDelegate) => false; // Static, no need to repaint
+  bool shouldRepaint(StaticRipplePainter oldDelegate) => false;
 }

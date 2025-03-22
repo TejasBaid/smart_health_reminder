@@ -36,7 +36,7 @@ class _SignInViewState extends State<SignInView> {
             color: ColorConsts.bluePrimary,
             child: Stack(
               children: [
-                const StaticRippleBackground(btnCol: ColorConsts.bluePrimary,), // Updated ripple background with bounded height
+                const StaticRippleBackground(btnCol: ColorConsts.bluePrimary,),
                 SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(24.0, 36.0, 24.0, 40.0),
@@ -86,7 +86,7 @@ class _SignInViewState extends State<SignInView> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        SizedBox(height: 30),
+                        SizedBox(height: 20),
                         // Email input
                         AuthInputField(
                           label: 'Email',
@@ -105,7 +105,6 @@ class _SignInViewState extends State<SignInView> {
 
                         const SizedBox(height: 16),
 
-                        // Password input
                         AuthInputField(
                           label: 'Password',
                           isPassword: _obscurePassword,
@@ -135,7 +134,6 @@ class _SignInViewState extends State<SignInView> {
                           alignment: Alignment.centerRight,
                           child: TextButton(
                             onPressed: () {
-                              // Navigate to forgot password
                             },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -155,20 +153,17 @@ class _SignInViewState extends State<SignInView> {
 
                         const SizedBox(height: 20),
 
-                        // Login button
                         AuthButton(
                           text: 'Login',
 
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              // Handle login
                             }
                           },
                         ),
 
                         const SizedBox(height: 20),
 
-                        // Social login divider
                         Row(
                           children: [
                             const Expanded(
@@ -193,7 +188,6 @@ class _SignInViewState extends State<SignInView> {
 
                         const SizedBox(height: 20),
 
-                        // Social login buttons
                         Row(
                           children: [
                             Expanded(
@@ -209,7 +203,6 @@ class _SignInViewState extends State<SignInView> {
                               child: SocialLoginButton(
                                 type: SocialLoginType.facebook,
                                 onPressed: () {
-                                  // Handle Facebook login
                                 },
                               ),
                             ),
@@ -218,7 +211,6 @@ class _SignInViewState extends State<SignInView> {
 
                         const SizedBox(height: 32),
 
-                        // Register link
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
