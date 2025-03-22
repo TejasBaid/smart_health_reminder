@@ -323,6 +323,7 @@ class _PostureTrackingViewState extends State<PostureTrackingView> {
                             ],
                           ),
                         ),
+                        SizedBox(height: 100,)
                       ],
                     ),
                   ),

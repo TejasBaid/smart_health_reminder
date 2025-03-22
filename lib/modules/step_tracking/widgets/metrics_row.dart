@@ -27,7 +27,7 @@ class MetricsRow extends StatelessWidget {
           valueNotifier: valueNotifier,
           foregroundColor: ColorConsts.orangeAccent,
           icon: FaIcon(FontAwesomeIcons.locationDot, color: ColorConsts.orangeAccent),
-          valueText: "1.2",
+          valueText: "12.2",
           unit: "km",
         ),
         // Third metric card: Heart rate (avg bpm)

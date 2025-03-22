@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smart_health_reminder/core/const_imports.dart';
-import 'package:smart_health_reminder/modules/step_tracking/widgets/metrics_row.dart';
 import 'package:smart_health_reminder/modules/water_tracking/widgets/weather_card.dart';
 import '../../../core/widgets/custom_navbar.dart';
 import '../../../core/widgets/hydration_header.dart';
@@ -22,7 +21,6 @@ class WaterTrackingView extends StatefulWidget {
 class _WaterTrackingViewState extends State<WaterTrackingView> {
   final ValueNotifier<double> _waterIntakeNotifier = ValueNotifier(1200);
   final ValueNotifier<double> _dailyGoalNotifier = ValueNotifier(2000);
-  final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
   final double _dailyGoal = 2000;
   final List<WaterOption> _waterOptions = [
     WaterOption(amount: 100, label: '100 ml', icon: HugeIcons.strokeRoundedDroplet, color: ColorConsts.bluePrimary),
@@ -173,8 +171,7 @@ class _WaterTrackingViewState extends State<WaterTrackingView> {
                             ),
                           ),
                           const SizedBox(height: 16),
-                          MetricsRow(valueNotifier: _valueNotifier),
-                          SizedBox(height: 20,),
+
                           WaterStatusCard(
                             currentIntake: value,
                             dailyGoal: _dailyGoal,

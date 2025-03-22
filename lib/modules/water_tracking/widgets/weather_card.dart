@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/const_imports.dart';
 import '../../../services/weather_service.dart';
+import '../../posture_tracking/widgets/posture_status_card.dart';
 
 
 class WeatherCard extends StatefulWidget {
@@ -13,10 +14,10 @@ class WeatherCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<WeatherCard> createState() => _DelhiWeatherCardState();
+  State<WeatherCard> createState() => _WeatherCardState();
 }
 
-class _DelhiWeatherCardState extends State<WeatherCard> {
+class _WeatherCardState extends State<WeatherCard> {
   final WeatherService _weatherService = WeatherService();
   final HydrationRecommendationService _recommendationService = HydrationRecommendationService();
 
@@ -37,13 +38,15 @@ class _DelhiWeatherCardState extends State<WeatherCard> {
       setState(() => _isLoading = true);
 
       final weatherData = await _weatherService.getWeatherForDelhi();
-      final temperature = _weatherService.getCurrentTemperature(weatherData);
-
-      final recommendedIntake = _recommendationService.getRecommendedIntake(temperature);
-      final advice = _recommendationService.getHydrationAdvice(temperature);
+      final temperature =  _weatherService.getCurrentTemperature(weatherData);
+      // final recommendedIntake = _recommendationService.getRecommendedIntake(temperature);
+      // final advice = _recommendationService.getHydrationAdvice(temperature);
+      final recommendedIntake = _recommendationService.getRecommendedIntake(34);
+      final advice = _recommendationService.getHydrationAdvice(34);
 
       setState(() {
-        _temperature = temperature;
+        // _temperature = temperature;
+        _temperature = 34;
         _recommendedIntake = recommendedIntake;
         _advice = advice;
         _isLoading = false;
@@ -125,7 +128,7 @@ class _DelhiWeatherCardState extends State<WeatherCard> {
               ),
               const SizedBox(width: 10),
               const Text(
-                'Delhi Weather',
+                'Weather',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -133,7 +136,7 @@ class _DelhiWeatherCardState extends State<WeatherCard> {
               ),
               const Spacer(),
               IconButton(
-                icon: Icon(Icons.refresh, color: ColorConsts.tealPopAccent),
+                icon: Icon(Icons.refresh, color: _getTemperatureColor()),
                 onPressed: _fetchWeatherData,
                 iconSize: 20,
               ),
@@ -168,7 +171,7 @@ class _DelhiWeatherCardState extends State<WeatherCard> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: ColorConsts.tealPopAccent,
+                      color: _getTemperatureColor(),
                     ),
                   ),
                 ],
@@ -204,32 +207,64 @@ class _DelhiWeatherCardState extends State<WeatherCard> {
 
           const SizedBox(height: 16),
 
-          // Apply button
-          SizedBox(
+          Container(
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                widget.dailyGoalNotifier.value = _recommendedIntake;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                        'Daily goal updated to ${_recommendedIntake.toInt()} ml'
-                    ),
-                    backgroundColor: ColorConsts.tealPopAccent,
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorConsts.tealPopAccent,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: _getTemperatureColor(),
+              boxShadow: [
+                BoxShadow(
+                  color: ColorConsts.tealPopAccent.withOpacity(0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
                 ),
-              ),
-              child: const Text('Update Hydration Goal'),
+              ],
             ),
-          ),
+            child: Stack(
+              children: [
+                // Ripple background
+                Positioned.fill(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: const StaticRippleBackgroundCard(),
+                  ),
+                ),
+                // Button content
+                ElevatedButton(
+                  onPressed: () {
+                    widget.dailyGoalNotifier.value = _recommendedIntake;
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'Daily goal updated to ${_recommendedIntake.toInt()} ml'
+                        ),
+                        backgroundColor: ColorConsts.tealPopAccent,
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Update Hydration Goal',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ),
+              ],
+            ),
+          )
+
         ],
       ),
     );

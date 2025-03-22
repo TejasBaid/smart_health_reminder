@@ -17,7 +17,7 @@ class StepTrackingView extends StatefulWidget {
 }
 
 class _StepTrackingViewState extends State<StepTrackingView> {
-  int _currentIndex = 1;  // Track the current tab index
+  int _currentIndex = 1;
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
 
   @override
@@ -27,7 +27,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-          // Top blue section with ripple background
+
           Expanded(
             flex: 3,
             child: Stack(
@@ -37,7 +37,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                   child: Padding(padding: EdgeInsets.symmetric(horizontal:20),
                   child: Column(
                     children: [
-                      // Back button and title
+
                       const SizedBox(height: 16),
 
                       Row(
@@ -74,7 +74,6 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                             ],
                           ),
 
-                          // Notification icon
                         ],
                       ),
                       const SizedBox(height: 5),
@@ -94,7 +93,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                                   ),
                                   const SizedBox(width: 10),
                                   const Text(
-                                    '2041',
+                                    '9041',
                                     style: TextStyle(
                                       color: ColorConsts.whiteCl,
                                       fontSize: 38,
@@ -104,7 +103,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                                 ],
                               ),
                               const SizedBox(height: 3),
-                              // Unit selector
+
                               Container(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 12, vertical: 0),
@@ -135,7 +134,7 @@ class _StepTrackingViewState extends State<StepTrackingView> {
               ],
             ),
           ),
-          // Bottom section with progress details
+
           Expanded(
             flex: 7,
             child: Container(
@@ -152,7 +151,6 @@ class _StepTrackingViewState extends State<StepTrackingView> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Header with title and navigation to see all details
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

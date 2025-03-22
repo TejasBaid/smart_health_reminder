@@ -28,7 +28,7 @@ class _StepsHistoryViewState extends State<StepsHistoryView> {
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
                     child: Container(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: ColorConsts.greyOpacity02,
                         borderRadius: BorderRadius.circular(10),
