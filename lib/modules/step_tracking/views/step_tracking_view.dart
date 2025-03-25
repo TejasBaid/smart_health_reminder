@@ -20,6 +20,8 @@ class _StepTrackingViewState extends State<StepTrackingView> {
   int _currentIndex = 1;
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -228,3 +230,5 @@ class _StepTrackingViewState extends State<StepTrackingView> {
     );
   }
 }
+
+

@@ -108,7 +108,7 @@ class _AgeSelectionViewState extends State<AgeSelectionView> {
                 Expanded(
                   child: ListWheelScrollView.useDelegate(
                     controller: _scrollController,
-                    itemExtent: 150, // Adjusted for better spacing
+                    itemExtent: 100, // Decreased for closer spacing
                     diameterRatio: 2.0, // Less curved
                     perspective: 0.002, // Subtle 3D effect
                     physics: const FixedExtentScrollPhysics(),
@@ -132,10 +132,10 @@ class _AgeSelectionViewState extends State<AgeSelectionView> {
 
                         return Center(
                           child: AnimatedContainer(
-                              padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
                             duration: const Duration(milliseconds: 150),
-                            width: isSelected ? 160 : 110,
-                            height: isSelected ? 150 : 50,
+                            width: isSelected ? 200 : 110, // Increased width
+                            height: isSelected ? 200 : 50, // Increased height
                             decoration: BoxDecoration(
                               color: isSelected ? ColorConsts.greenAccent.withOpacity(0.2) : Colors.transparent,
                               borderRadius: BorderRadius.circular(45),
@@ -149,13 +149,13 @@ class _AgeSelectionViewState extends State<AgeSelectionView> {
                                 child: Text(
                                   '$age',
                                   style: TextStyle(
-                                    fontSize: isSelected ? 84 : 24,
+                                    fontSize: isSelected ? 64 : 24,
                                     fontWeight: FontWeight.w800,
                                     color: isSelected ? Colors.white : Colors.white.withOpacity(opacity),
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ),
                         );
                       },

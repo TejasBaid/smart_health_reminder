@@ -72,7 +72,7 @@ class _WeightSelectionViewState extends State<WeightSelectionView> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF8FD14F),
+      backgroundColor: ColorConsts.tealPopAccent,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -164,7 +164,7 @@ class _WeightSelectionViewState extends State<WeightSelectionView> {
                         child: Text(
                           'kg',
                           style: TextStyle(
-                            color: selectedUnit == 'kg' ? const Color(0xFF8FD14F) : Colors.white,
+                            color: selectedUnit == 'kg' ?  ColorConsts.tealPopAccent : Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -192,7 +192,7 @@ class _WeightSelectionViewState extends State<WeightSelectionView> {
                         child: Text(
                           'lbs',
                           style: TextStyle(
-                            color: selectedUnit == 'lbs' ? const Color(0xFF8FD14F) : Colors.white,
+                            color: selectedUnit == 'lbs' ? ColorConsts.tealPopAccent : Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -298,7 +298,7 @@ class _WeightSelectionViewState extends State<WeightSelectionView> {
                 onPressed: widget.onContinue,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
-                  foregroundColor: const Color(0xFF8FD14F),
+                  foregroundColor:  ColorConsts.tealPopAccent,
                   minimumSize: const Size(double.infinity, 52),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -313,14 +313,14 @@ class _WeightSelectionViewState extends State<WeightSelectionView> {
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFF8FD14F),
+                        color: ColorConsts.tealPopAccent,
                       ),
                     ),
                     SizedBox(width: 8),
                     Icon(
                       Icons.arrow_forward,
                       size: 18,
-                      color: Color(0xFF8FD14F),
+                      color: ColorConsts.tealPopAccent,
                     ),
                   ],
                 ),
