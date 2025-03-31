@@ -14,8 +14,8 @@ class AgeSelectionView extends StatefulWidget {
     this.initialAge = 19,
     required this.onAgeSelected,
     required this.onContinue,
-    this.currentPage = 3,
-    this.totalPages = 11,
+    this.currentPage = 1,
+    this.totalPages = 2,
   }) : super(key: key);
 
   @override
@@ -49,157 +49,166 @@ class _AgeSelectionViewState extends State<AgeSelectionView> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: Stack(
-        children: [
-          const StaticRippleBackground(),
-
-          SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.9),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_new, size: 18),
-                          onPressed: () => Navigator.of(context).pop(),
-                          color: Colors.black,
-                          padding: const EdgeInsets.all(8),
-                        ),
-                      ),
-                      SizedBox(width: 20,),
-                      // Title
-                      const Text(
-                        'Assessment',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: ColorConsts.whiteCl,
-                        ),
-                      ),
-
-                    ],
+      backgroundColor: ColorConsts.tealPopAccent,
+      body:         SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back_ios_new, size: 18),
+                      onPressed: () => Navigator.of(context).pop(),
+                      color: Colors.white,
+                      padding: const EdgeInsets.all(8),
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 10),
-
-                 Center(
-                  child: Text(
-                    "What's your Age?",
+                  const Text(
+                    'Assessment',
                     style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: ColorConsts.whiteCl,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-
-                const SizedBox(height: 40),
-
-                Expanded(
-                  child: ListWheelScrollView.useDelegate(
-                    controller: _scrollController,
-                    itemExtent: 100, // Decreased for closer spacing
-                    diameterRatio: 2.0, // Less curved
-                    perspective: 0.002, // Subtle 3D effect
-                    physics: const FixedExtentScrollPhysics(),
-                    onSelectedItemChanged: (index) {
-                      setState(() {
-                        selectedAge = index + minAge;
-                        widget.onAgeSelected(selectedAge);
-                      });
-                    },
-                    childDelegate: ListWheelChildBuilderDelegate(
-                      childCount: maxAge - minAge + 1,
-                      builder: (context, index) {
-                        final age = index + minAge;
-                        final isSelected = age == selectedAge;
-
-                        double opacity = 1.0;
-                        int distance = (age - selectedAge).abs();
-                        if (distance == 1) opacity = 0.8;
-                        else if (distance == 2) opacity = 0.5;
-                        else if (distance > 2) opacity = 0.3;
-
-                        return Center(
-                          child: AnimatedContainer(
-                            padding: const EdgeInsets.all(5),
-                            duration: const Duration(milliseconds: 150),
-                            width: isSelected ? 200 : 110, // Increased width
-                            height: isSelected ? 200 : 50, // Increased height
-                            decoration: BoxDecoration(
-                              color: isSelected ? ColorConsts.greenAccent.withOpacity(0.2) : Colors.transparent,
-                              borderRadius: BorderRadius.circular(45),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: isSelected ? ColorConsts.greenAccent : Colors.transparent,
-                                borderRadius: BorderRadius.circular(45),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '$age',
-                                  style: TextStyle(
-                                    fontSize: isSelected ? 64 : 24,
-                                    fontWeight: FontWeight.w800,
-                                    color: isSelected ? Colors.white : Colors.white.withOpacity(opacity),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
                     ),
                   ),
-                ),
 
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: ElevatedButton(
-                    onPressed: widget.onContinue,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorConsts.whiteCl,
-                      minimumSize: const Size(double.infinity, 52),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Text(
+                      '${widget.currentPage} of ${widget.totalPages}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
                       ),
-                      elevation: 0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'Continue',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: ColorConsts.blackText
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        Icon(
-                          Icons.arrow_forward,
-                          size: 18,
-                        ),
-                      ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+
+            const SizedBox(height: 10),
+
+            Center(
+              child: Text(
+                "What's your Age?",
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: ColorConsts.whiteCl,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
+            Expanded(
+              child: ListWheelScrollView.useDelegate(
+                controller: _scrollController,
+                itemExtent: 100, // Decreased for closer spacing
+                diameterRatio: 2.0, // Less curved
+                perspective: 0.002, // Subtle 3D effect
+                physics: const FixedExtentScrollPhysics(),
+                onSelectedItemChanged: (index) {
+                  setState(() {
+                    selectedAge = index + minAge;
+                    widget.onAgeSelected(selectedAge);
+                  });
+                },
+                childDelegate: ListWheelChildBuilderDelegate(
+                  childCount: maxAge - minAge + 1,
+                  builder: (context, index) {
+                    final age = index + minAge;
+                    final isSelected = age == selectedAge;
+
+                    double opacity = 1.0;
+                    int distance = (age - selectedAge).abs();
+                    if (distance == 1) opacity = 0.8;
+                    else if (distance == 2) opacity = 0.5;
+                    else if (distance > 2) opacity = 0.3;
+
+                    return Center(
+                      child: AnimatedContainer(
+                        padding: const EdgeInsets.all(5),
+                        duration: const Duration(milliseconds: 150),
+                        width: isSelected ? 200 : 110, // Increased width
+                        height: isSelected ? 200 : 50, // Increased height
+                        decoration: BoxDecoration(
+                          color: isSelected ? ColorConsts.greenAccent.withOpacity(0.2) : Colors.transparent,
+                          borderRadius: BorderRadius.circular(45),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: isSelected ? ColorConsts.greenAccent : Colors.transparent,
+                            borderRadius: BorderRadius.circular(45),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '$age',
+                              style: TextStyle(
+                                fontSize: isSelected ? 64 : 24,
+                                fontWeight: FontWeight.w800,
+                                color: isSelected ? Colors.white : Colors.white.withOpacity(opacity),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: ElevatedButton(
+                onPressed: widget.onContinue,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorConsts.whiteCl,
+                  minimumSize: const Size(double.infinity, 52),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      'Continue',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: ColorConsts.blackText
+                      ),
+                    ),
+                    SizedBox(width: 8),
+                    Icon(
+                      Icons.arrow_forward,
+                      size: 18,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
+
     );
   }
 }

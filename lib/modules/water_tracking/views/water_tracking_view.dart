@@ -21,7 +21,7 @@ class WaterTrackingView extends StatefulWidget {
 class _WaterTrackingViewState extends State<WaterTrackingView> {
   final ValueNotifier<double> _waterIntakeNotifier = ValueNotifier(1200);
   final ValueNotifier<double> _dailyGoalNotifier = ValueNotifier(2000);
-  final double _dailyGoal = 2000;
+  final double _dailyGoal = 3000;
   final List<WaterOption> _waterOptions = [
     WaterOption(amount: 100, label: '100 ml', icon: HugeIcons.strokeRoundedDroplet, color: ColorConsts.bluePrimary),
     WaterOption(amount: 250, label: '1 Glass', icon: FontAwesomeIcons.wineGlass, color: ColorConsts.bluePrimary),

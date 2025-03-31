@@ -24,7 +24,7 @@ class _WeatherCardState extends State<WeatherCard> {
   bool _isLoading = true;
   String _errorMessage = '';
   double _temperature = 0.0;
-  double _recommendedIntake = 2000.0;
+  double _recommendedIntake = 3000.0;
   String _advice = '';
 
   @override
@@ -41,12 +41,12 @@ class _WeatherCardState extends State<WeatherCard> {
       final temperature =  _weatherService.getCurrentTemperature(weatherData);
       // final recommendedIntake = _recommendationService.getRecommendedIntake(temperature);
       // final advice = _recommendationService.getHydrationAdvice(temperature);
-      final recommendedIntake = _recommendationService.getRecommendedIntake(34);
-      final advice = _recommendationService.getHydrationAdvice(34);
+      final recommendedIntake = _recommendationService.getRecommendedIntake(40);
+      final advice = _recommendationService.getHydrationAdvice(40);
 
       setState(() {
         // _temperature = temperature;
-        _temperature = 34;
+        _temperature = 40;
         _recommendedIntake = recommendedIntake;
         _advice = advice;
         _isLoading = false;

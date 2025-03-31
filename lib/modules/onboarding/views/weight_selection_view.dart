@@ -15,7 +15,7 @@ class WeightSelectionView extends StatefulWidget {
     required this.onWeightSelected,
     required this.onContinue,
     this.currentPage = 2,
-    this.totalPages = 4,
+    this.totalPages = 2,
   }) : super(key: key);
 
   @override
