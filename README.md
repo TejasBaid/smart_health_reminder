@@ -1,43 +1,43 @@
 
-## **🩺 Smart Health Reminder & Gamification App**
+## **Smart Health Reminder & Gamification App**
 
-### **🚀 Overview**
+### **Overview**
 Many health-tracking apps exist, but they often lack engagement. This app transforms **health reminders** into a **fun, interactive, and effective** experience using **gamification**. It ensures users stay on track with hydration, posture, step goals, and meditation while earning points, unlocking achievements, and competing with friends.
 
-### **🎯 Key Features**
-#### 🛠 **Smart Health Reminders**
+### **Key Features**
+####  **Smart Health Reminders**
 ✔ **Hydration tracking**: Reminders based on temperature & activity levels.  
 ✔ **Posture correction**: Uses phone sensors to detect & correct poor posture.  
 ✔ **Step count nudges**: Encourages daily movement goals.  
 ✔ **Breathing & meditation**: Promotes mindfulness based on stress levels.
 
-#### 🏆 **Gamification & Challenges**
+####  **Gamification & Challenges**
 ✔ Earn **points** for completing health tasks.  
 ✔ Unlock **achievements** (e.g., **"10-Day Hydration Streak"**).  
 ✔ **Social leaderboards**: Compete with friends for better health.
 
-#### ⏰ **Smart Alarm & Reminders (UAC Integration)** *(Bonus Feature)*
+####  **Smart Alarm & Reminders (UAC Integration)** *(Bonus Feature)*
 ✔ Wake-up alarms that adjust based on **sleep quality**.  
 ✔ Personalized alerts based on **movement or inactivity**.  
 ✔ **Shared alarms** for group workouts & health challenges.
 
 
-## **🛠 Tech Stack**
+## **Tech Stack**
 - **Flutter** (Dart) - Frontend UI
 - **Firebase** - Backend & Authentication
 - **Hive/SQLite** - Local Data Storage
 - **Rive/Lottie** - Animated UI Elements
 ---
 
-## **🚀 Getting Started**
+## **Getting Started**
 
-### **🔹 Prerequisites**
+### **Prerequisites**
 Ensure you have the following installed:
 - **Flutter SDK** (latest version)
 - **Dart**
 - **Android Studio/Xcode**
 
-### **🔹 Setup & Installation**
+### **Setup & Installation**
 
 1️⃣ **Clone the repository:**
 ```sh
@@ -53,7 +53,7 @@ flutter pub get
 flutter run
 ```
 
-## **🤝 Contributing**
+## **Contributing**
 Want to improve this project? Follow these steps:
 1. **Fork** the repository.
 2. Create a **new branch**:
@@ -72,12 +72,12 @@ Want to improve this project? Follow these steps:
 
 ---
 
-## **🛡 License**
+## **License**
 📜 This project is licensed under the **MIT License** – feel free to modify and distribute it.
 
 ---
 
-## **📬 Contact & Support**
+## **Contact & Support**
 For questions, reach out to:  
 📧 Email: tejasbaid3@gmail.com
 ---
